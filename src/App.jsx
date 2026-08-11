@@ -4,9 +4,10 @@ import AppNav from "./components/layout/AppNav.jsx";
 import Airports from "./pages/Airports.jsx";
 //cities import
 import Cities from "./pages/Cities.jsx";
-//aircarft import for hooks and components 
+//aircarft import for hooks and components
 import Aircraft from "./pages/Aircraft.jsx";
-
+//passengers import
+import Passengers from "./pages/Passengers.jsx";
 
 export default function App() {
   return (
@@ -19,6 +20,7 @@ export default function App() {
             <Route path="/airports" element={<Airports />} />
             <Route path="/cities" element={<Cities />} />
             <Route path="/aircraft" element={<Aircraft />} />
+            <Route path="/passengers" element={<Passengers />} />
           </Routes>
         </main>
       </div>
