@@ -1,6 +1,7 @@
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 import AppNav from "./components/layout/AppNav.jsx";
-
+//adding import for the page airports-this was missing
+import Airports from "./pages/Airports.jsx";
 
 export default function App() {
   return (
@@ -10,6 +11,7 @@ export default function App() {
         <main className="db-main">
           <Routes>
             <Route path="/" element={<h1>Home</h1>} />
+            <Route path="/airports" element={<Airports />} />
           </Routes>
         </main>
       </div>
