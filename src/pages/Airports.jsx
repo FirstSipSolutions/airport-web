@@ -6,12 +6,23 @@ export default function Airports() {
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
 
+  // airports was not rendering so added a console log here
   useEffect(() => {
+    console.log("effect ran");
     api
       .get("/airports")
-      .then((data) => setAirports(data))
-      .catch((err) => setError(err.message))
-      .finally(() => setLoading(false));
+      .then((data) => {
+        console.log("got:", data);
+        setAirports(data);
+      })
+      .catch((err) => {
+        console.log("failed:", err);
+        setError(err.message);
+      })
+      .finally(() => {
+        console.log("finally");
+        setLoading(false);
+      });
   }, []);
 
   //loading handler here
