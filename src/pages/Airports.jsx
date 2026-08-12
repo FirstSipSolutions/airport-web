@@ -46,37 +46,51 @@ export default function Airports() {
       .catch((err) => setError(err.message));
   }
 
+
+     // DELETE PART
+  function handleDelete(id) {
+    api
+      .delete("/airports/" + id)
+      .then(() => {
+        setAirports(airports.filter((a) => a.id !== id));
+      })
+      .catch((err) => setError(err.message));
+  }
+
+
   //loading handler here
   if (loading) return <p>Loading...</p>;
   if (error) return <p>Error: {error}</p>;
 
   return (
+
+
     <div>
       <h1>Airports</h1>
             <div>
         <input
           placeholder="Name"
           value={name}
-          onChange={(e) => setName(e.target.value)}
-        />
+          onChange={(e) => setName(e.target.value)}/>
         <input
           placeholder="Code"
           value={code}
-          onChange={(e) => setCode(e.target.value)}
-        />
+          onChange={(e) => setCode(e.target.value)}/>
         <input
           placeholder="City ID"
           value={cityId}
-          onChange={(e) => setCityId(e.target.value)}
-        />
+          onChange={(e) => setCityId(e.target.value)}/>
         <button onClick={handleCreate}>Add Airport</button>
       </div>
+
+ 
       <table>
         <thead>
           <tr>
             <th>Code</th>
             <th>Name</th>
             <th>City</th>
+            <th>Actions</th>
           </tr>
         </thead>
         <tbody>
@@ -85,10 +99,16 @@ export default function Airports() {
               <td>{airport.code}</td>
               <td>{airport.name}</td>
               <td>{airport.city?.name}</td>
+               <td>
+                <button onClick={() => handleDelete(airport.id)}>Delete</button>
+              </td>
             </tr>
           ))}
         </tbody>
       </table>
+
+
+
     </div>
   );
 }
