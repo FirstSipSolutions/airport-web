@@ -5,11 +5,14 @@ export default function Airports() {
   const [airports, setAirports] = useState([]);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
-  //added in more use states 
+  //added in more use states
 
   const [name, setName] = useState("");
   const [code, setCode] = useState("");
   const [cityId, setCityId] = useState("");
+  //here is a new state for update
+  const [editingId, setEditingId] = useState(null);
+
   //airports was not rendering so added a console log here
   useEffect(() => {
     console.log("effect ran");
@@ -30,7 +33,7 @@ export default function Airports() {
   }, []);
 
   // CREATE PART - this is part of the crud that is being built out
-    function handleCreate() {
+  function handleCreate() {
     api
       .post("/airports", {
         name: name,
@@ -46,6 +49,40 @@ export default function Airports() {
       .catch((err) => setError(err.message));
   }
 
+  //DELETE
+  function handleDelete(id) {
+    api
+      .delete("/airports/" + id)
+      .then(() => {
+        setAirports(airports.filter((a) => a.id !== id));
+      })
+      .catch((err) => setError(err.message));
+  }
+
+  //UPDATE PART this will fill the form with the row's values
+  function handleEditClick(airport) {
+    setEditingId(airport.id);
+    setName(airport.name);
+    setCode(airport.code);
+    setCityId(airport.city?.id || "");
+  }
+
+  function handleUpdate() {
+    api
+      .put("/airports/" + editingId, {
+        name: name,
+        code: code,
+        city: { id: Number(cityId) },
+      })
+      .then((updated) => {
+        setAirports(airports.map((a) => (a.id === editingId ? updated : a)));
+        setEditingId(null);
+        setName("");
+        setCode("");
+        setCityId("");
+      })
+      .catch((err) => setError(err.message));
+  }
   //loading handler here
   if (loading) return <p>Loading...</p>;
   if (error) return <p>Error: {error}</p>;
@@ -53,7 +90,7 @@ export default function Airports() {
   return (
     <div>
       <h1>Airports</h1>
-            <div>
+      <div>
         <input
           placeholder="Name"
           value={name}
@@ -69,14 +106,18 @@ export default function Airports() {
           value={cityId}
           onChange={(e) => setCityId(e.target.value)}
         />
-        <button onClick={handleCreate}>Add Airport</button>
+        <button onClick={editingId ? handleUpdate : handleCreate}>
+          {editingId ? "Save Changes" : "Add Airport"}
+        </button>
       </div>
+
       <table>
         <thead>
           <tr>
             <th>Code</th>
             <th>Name</th>
             <th>City</th>
+            <th>Actions</th>
           </tr>
         </thead>
         <tbody>
@@ -85,6 +126,14 @@ export default function Airports() {
               <td>{airport.code}</td>
               <td>{airport.name}</td>
               <td>{airport.city?.name}</td>
+              <td>
+                <button onClick={() => handleDelete(airport.id)}>Delete</button>
+              </td>
+
+              <td>
+                <button onClick={() => handleEditClick(airport)}>Edit</button>
+                <button onClick={() => handleDelete(airport.id)}>Delete</button>
+              </td>
             </tr>
           ))}
         </tbody>
@@ -92,4 +141,4 @@ export default function Airports() {
     </div>
   );
 }
-// adding in state for the application 
+// adding in state for the application
