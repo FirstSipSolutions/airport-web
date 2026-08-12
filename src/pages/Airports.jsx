@@ -5,8 +5,12 @@ export default function Airports() {
   const [airports, setAirports] = useState([]);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
+  //added in more use states 
 
-  // airports was not rendering so added a console log here
+  const [name, setName] = useState("");
+  const [code, setCode] = useState("");
+  const [cityId, setCityId] = useState("");
+  //airports was not rendering so added a console log here
   useEffect(() => {
     console.log("effect ran");
     api
@@ -25,6 +29,23 @@ export default function Airports() {
       });
   }, []);
 
+  // CREATE PART - this is part of the crud that is being built out
+    function handleCreate() {
+    api
+      .post("/airports", {
+        name: name,
+        code: code,
+        city: { id: Number(cityId) },
+      })
+      .then((newAirport) => {
+        setAirports([...airports, newAirport]);
+        setName("");
+        setCode("");
+        setCityId("");
+      })
+      .catch((err) => setError(err.message));
+  }
+
   //loading handler here
   if (loading) return <p>Loading...</p>;
   if (error) return <p>Error: {error}</p>;
@@ -32,6 +53,24 @@ export default function Airports() {
   return (
     <div>
       <h1>Airports</h1>
+            <div>
+        <input
+          placeholder="Name"
+          value={name}
+          onChange={(e) => setName(e.target.value)}
+        />
+        <input
+          placeholder="Code"
+          value={code}
+          onChange={(e) => setCode(e.target.value)}
+        />
+        <input
+          placeholder="City ID"
+          value={cityId}
+          onChange={(e) => setCityId(e.target.value)}
+        />
+        <button onClick={handleCreate}>Add Airport</button>
+      </div>
       <table>
         <thead>
           <tr>
@@ -53,3 +92,4 @@ export default function Airports() {
     </div>
   );
 }
+// adding in state for the application 
