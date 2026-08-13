@@ -17,7 +17,7 @@ export default function Airports() {
   useEffect(() => {
     console.log("effect ran");
     api
-      .get("/airports")
+      .get("/airports/getall")
       .then((data) => {
         console.log("got:", data);
         setAirports(data);
@@ -35,7 +35,7 @@ export default function Airports() {
   // CREATE PART - this is part of the crud that is being built out
   function handleCreate() {
     api
-      .post("/airports", {
+      .post("/airports/createnew", {
         name: name,
         code: code,
         city: { id: Number(cityId) },
@@ -52,7 +52,7 @@ export default function Airports() {
   //DELETE
   function handleDelete(id) {
     api
-      .delete("/airports/" + id)
+      .delete("/airports/delete/id/" + id)
       .then(() => {
         setAirports(airports.filter((a) => a.id !== id));
       })
@@ -69,7 +69,7 @@ export default function Airports() {
 
   function handleUpdate() {
     api
-      .put("/airports/" + editingId, {
+      .put("/airports/update/id/" + editingId, {
         name: name,
         code: code,
         city: { id: Number(cityId) },

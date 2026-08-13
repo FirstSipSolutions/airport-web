@@ -14,7 +14,7 @@ export default function Aircraft() {
 
 
   useEffect(() => {
-    api.get("/aircraft")
+    api.get("/aircraft/findall")
       .then(data => setAircraft(data))
       .catch(err => setError(err.message))
       .finally(() => setLoading(false));
@@ -22,7 +22,7 @@ export default function Aircraft() {
 
 function handleCreate() {
     api
-      .post("/aircraft", {
+      .post("/aircraft/createnew", {
         type: type,
         airlineName: airlineName,
         numberOfPassengers: Number(numberOfPassengers),
@@ -38,7 +38,7 @@ function handleCreate() {
 
   function handleDelete(id) {
     api
-      .delete("/aircraft/" + id)
+      .delete("/aircraft/deleteby/id/" + id)
       .then(() => setAircraft(aircraft.filter((a) => a.id !== id)))
       .catch((err) => setError(err.message));
   }
@@ -52,7 +52,7 @@ function handleCreate() {
 
   function handleUpdate() {
     api
-      .put("/aircraft/" + editingId, {
+      .put("/aircraft/updateby/id/" + editingId, {
         type: type,
         airlineName: airlineName,
         numberOfPassengers: Number(numberOfPassengers),
