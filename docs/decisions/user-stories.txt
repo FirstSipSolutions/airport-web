@@ -1,41 +1,4 @@
-# airport-web
-
-React frontend for the airport board application. Talks to the airport-api
-Spring Boot service.
-
-## Running locally
-
-Requires Node 22 and the API running on port 8080.
-
-    npm install
-    npm run dev
-
-Vite serves on http://localhost:5173.
-
-## Configuration
-
-The API base URL comes from `VITE_API_URL`. If it isn't set, the app falls
-back to `http://localhost:8080/api`, which is what you want for local work.
-
-For deployment, set it in the hosting platform's environment variables:
-
-    VITE_API_URL=https://your-api-host/api
-
-Vite bakes environment variables in at build time, so changing the value
-requires a rebuild.
-
-## Structure
-
-    src/
-      components/layout/   nav
-      pages/               one component per entity
-      lib/api.js           all HTTP calls
-      styles/
-
-Every page follows the same shape: state, a fetch on mount, loading and error
-guards, then the table. `api.js` is the only file that knows the API's address.
-
-## User stories
+## User Stories
 
 ### Airports
 
@@ -64,7 +27,3 @@ guards, then the table. `api.js` is the only file that knows the API's address.
 - As a user, I see a loading indicator while data is being fetched so that I know the page is working.
 - As a user, I see a clear error message when the API is unavailable so that I'm not left with a blank screen.
 - As a user, I can navigate between sections using the top navigation so that I can move around without editing the URL.
-
-## Notes
-
-Decisions worth explaining are in `docs/decisions/`.
