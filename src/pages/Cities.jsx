@@ -14,7 +14,7 @@ export default function Cities() {
 
   useEffect(() => {
     api
-      .get("/cities")
+      .get("/cities/getall")
       .then((data) => setCities(data))
       .catch((err) => setError(err.message))
       .finally(() => setLoading(false));
@@ -22,7 +22,7 @@ export default function Cities() {
 
   function handleCreate() {
     api
-      .post("/cities", {
+      .post("/cities/createnew", {
         name: name,
         state: stateField,
         population: Number(population),
@@ -38,7 +38,7 @@ export default function Cities() {
 
   function handleDelete(id) {
     api
-      .delete("/cities/" + id)
+      .delete("/cities/delete/id/" + id)
       .then(() => setCities(cities.filter((c) => c.id !== id)))
       .catch((err) => setError(err.message));
   }
@@ -52,7 +52,7 @@ export default function Cities() {
 
   function handleUpdate() {
     api
-      .put("/cities/" + editingId, {
+      .put("/cities/update/id/" + editingId, {
         name: name,
         state: stateField,
         population: Number(population),

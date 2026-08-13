@@ -14,15 +14,15 @@ export default function Passengers() {
 
   useEffect(() => {
     api
-      .get("/passengers")
-      .then((data) => setPassengers(data))
+      .get("/passengers/getall")
+      .then((data) => setPassengers(data.content))
       .catch((err) => setError(err.message))
       .finally(() => setLoading(false));
   }, []);
 
   function handleCreate() {
     api
-      .post("/passengers", {
+      .post("/passengers/createnew", {
         firstName: firstName,
         lastName: lastName,
         phoneNumber: phoneNumber,
@@ -40,7 +40,7 @@ export default function Passengers() {
 
   function handleDelete(id) {
     api
-      .delete("/passengers/" + id)
+      .delete("/passengers/delete/id/" + id)
       .then(() => setPassengers(passengers.filter((p) => p.id !== id)))
       .catch((err) => setError(err.message));
   }
@@ -55,7 +55,7 @@ export default function Passengers() {
 
   function handleUpdate() {
     api
-      .put("/passengers/" + editingId, {
+      .put("/passengers/update/id/" + editingId, {
         firstName: firstName,
         lastName: lastName,
         phoneNumber: phoneNumber,
