@@ -95,6 +95,22 @@
   gap: 10px;
 }
 
+.db-nav-login {
+  padding: 6px 14px;
+  border: 1px solid var(--db-border);
+  border-radius: 0.08rem;
+  font-size: 13px;
+  font-weight: 500;
+  color: var(--db-text);
+  background: transparent;
+  text-decoration: none;
+  transition: background 0.15s;
+}
+
+.db-nav-login:hover {
+  background: var(--db-blue-dim);
+}
+
 /* ── Page shell ── */
 
 .db-root {
