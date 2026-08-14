@@ -75,8 +75,9 @@ export default function AppNav() {
         ))}
       </div>
 
-      {/* I need to put the logout button in here once auth is wiredd up. */}
-      <div className="db-nav-actions" />
+      <div className="db-nav-actions">
+        <Link to="/login" className="db-nav-login">Log In</Link>
+      </div>
     </nav>
   );
 }
