@@ -8,6 +8,7 @@ import Cities from "./pages/Cities.jsx";
 import Aircraft from "./pages/Aircraft.jsx";
 //passengers import
 import Passengers from "./pages/Passengers.jsx";
+import Flights from "./pages/Flights.jsx";
 import Login from "./pages/Login.jsx";
 
 export default function App() {
@@ -22,6 +23,7 @@ export default function App() {
             <Route path="/cities" element={<Cities />} />
             <Route path="/aircraft" element={<Aircraft />} />
             <Route path="/passengers" element={<Passengers />} />
+            <Route path="/flights" element={<Flights />} />
             <Route path="/login" element={<Login />} />
           </Routes>
         </main>
