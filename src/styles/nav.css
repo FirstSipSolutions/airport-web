@@ -112,6 +112,158 @@
   color: #fff;
 }
 
+/* ── Home page ── */
+
+.home-stats {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+  margin-top: 20px;
+}
+
+.home-stat {
+  border: 1px solid var(--db-border);
+  border-radius: 0.08rem;
+  padding: 14px 20px;
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+  min-width: 100px;
+}
+
+.home-stat-value {
+  font-size: 24px;
+  font-weight: 700;
+  color: var(--db-blue);
+}
+
+.home-stat-label {
+  font-size: 12px;
+  color: var(--db-text-dim);
+}
+
+.home-links {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+  margin-top: 20px;
+}
+
+.home-link {
+  padding: 10px 16px;
+  border: 1px solid var(--db-border);
+  border-radius: 0.08rem;
+  color: var(--db-text);
+  text-decoration: none;
+  font-size: 14px;
+  font-weight: 500;
+  transition: background 0.15s;
+}
+
+.home-link:hover {
+  background: var(--db-blue-dim);
+}
+
+/* ── Board page ── */
+
+.board-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(240px, 1fr));
+  gap: 16px;
+  margin-top: 24px;
+}
+
+.board-card {
+  border: 1px solid var(--db-border);
+  border-radius: 0.08rem;
+  padding: 18px;
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  transition: transform 0.15s, border-color 0.15s;
+}
+
+.board-card:hover {
+  transform: translateY(-2px);
+  border-color: var(--db-blue);
+}
+
+.board-card-top {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.board-flight-number {
+  font-weight: 700;
+  color: var(--db-text);
+}
+
+.board-status {
+  font-size: 12px;
+  padding: 3px 10px;
+  border-radius: 0.08rem;
+  border: 1px solid var(--db-border);
+  color: var(--db-text-dim);
+}
+
+.board-status-ontime {
+  color: #4ade80;
+  border-color: #4ade80;
+}
+
+.board-status-delayed {
+  color: #fbbf24;
+  border-color: #fbbf24;
+}
+
+.board-status-cancelled {
+  color: #ff6b6b;
+  border-color: #ff6b6b;
+}
+
+.board-status-boarding {
+  color: var(--db-blue);
+  border-color: var(--db-blue);
+}
+
+.board-route {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  font-size: 16px;
+  font-weight: 600;
+  color: var(--db-text);
+}
+
+.board-route-arrow {
+  color: var(--db-text-dim);
+  font-weight: 400;
+}
+
+.board-times {
+  display: flex;
+  justify-content: space-between;
+  padding-top: 10px;
+  border-top: 1px solid var(--db-border);
+  font-size: 13px;
+  color: var(--db-text);
+}
+
+.board-meta {
+  display: flex;
+  justify-content: space-between;
+  font-size: 13px;
+  color: var(--db-text);
+}
+
+.board-label {
+  display: block;
+  font-size: 11px;
+  color: var(--db-text-dim);
+  margin-bottom: 2px;
+}
+
 /* ── Login page ── */
 
 .login-box {
