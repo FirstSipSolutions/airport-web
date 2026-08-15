@@ -3,6 +3,11 @@ import { api } from "../lib/api.js";
 
 const REFRESH_MS = 30000;
 
+function formatTime(dateTime) {
+  if (!dateTime) return "-";
+  return dateTime.slice(11, 16);
+}
+
 function statusClass(status) {
   const s = (status || "").toLowerCase();
   if (s === "delayed") return "board-status board-status-delayed";
@@ -46,17 +51,29 @@ export default function Board() {
               <span className={statusClass(f.status)}>{f.status}</span>
             </div>
             <div className="board-route">
-              <span>{f.airportDeparture?.code || "—"}</span>
+              <span>{f.airportDeparture?.code || "-"}</span>
               <span className="board-route-arrow">→</span>
-              <span>{f.airportArrival?.code || "—"}</span>
+              <span>{f.airportArrival?.code || "-"}</span>
             </div>
             <div className="board-times">
-              <span>Departs {f.departure}</span>
-              <span>Arrives {f.arrival}</span>
+              <span>
+                <span className="board-label">Departs</span>
+                {formatTime(f.departure)}
+              </span>
+              <span>
+                <span className="board-label">Arrives</span>
+                {formatTime(f.arrival)}
+              </span>
             </div>
             <div className="board-meta">
-              <span>Gate {f.gate}</span>
-              <span>Terminal {f.terminal}</span>
+              <span>
+                <span className="board-label">Gate</span>
+                {f.gate}
+              </span>
+              <span>
+                <span className="board-label">Terminal</span>
+                {f.terminal}
+              </span>
             </div>
           </div>
         ))}

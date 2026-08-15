@@ -25,7 +25,7 @@ export default function Flights() {
       .finally(() => setLoading(false));
   }, []);
 
-  // builds the request body — used by both create and update
+  // builds the request body - used by both create and update
   function buildBody() {
     return {
       flightNumber: flightNumber,
