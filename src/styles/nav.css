@@ -112,6 +112,89 @@
   color: #fff;
 }
 
+/* ── Board page ── */
+
+.board-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
+  gap: 12px;
+  margin-top: 20px;
+}
+
+.board-card {
+  border: 1px solid var(--db-border);
+  border-radius: 0.08rem;
+  padding: 14px;
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  transition: transform 0.15s, border-color 0.15s;
+}
+
+.board-card:hover {
+  transform: translateY(-2px);
+  border-color: var(--db-blue);
+}
+
+.board-card-top {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.board-flight-number {
+  font-weight: 700;
+  color: var(--db-text);
+}
+
+.board-status {
+  font-size: 12px;
+  padding: 2px 8px;
+  border-radius: 0.08rem;
+  border: 1px solid var(--db-border);
+  color: var(--db-text-dim);
+}
+
+.board-status-ontime {
+  color: #4ade80;
+  border-color: #4ade80;
+}
+
+.board-status-delayed {
+  color: #fbbf24;
+  border-color: #fbbf24;
+}
+
+.board-status-cancelled {
+  color: #ff6b6b;
+  border-color: #ff6b6b;
+}
+
+.board-status-boarding {
+  color: var(--db-blue);
+  border-color: var(--db-blue);
+}
+
+.board-route {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  font-size: 15px;
+  color: var(--db-text);
+}
+
+.board-route-arrow {
+  color: var(--db-text-dim);
+}
+
+.board-times,
+.board-meta {
+  display: flex;
+  justify-content: space-between;
+  font-size: 13px;
+  color: var(--db-text-dim);
+}
+
 /* ── Login page ── */
 
 .login-box {
