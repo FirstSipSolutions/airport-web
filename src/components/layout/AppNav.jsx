@@ -1,5 +1,6 @@
 import { useState, useRef, useEffect } from "react";
-import { Link, useLocation } from "react-router-dom";
+import { Link, useLocation, useNavigate } from "react-router-dom";
+import { supabase } from "../../lib/supabase.js";
 import "../../styles/nav.css";
 
 const BRAND = "Airport Board";
@@ -14,11 +15,30 @@ const NAV_LINKS = [
 ];
 export default function AppNav() {
   const { pathname } = useLocation();
+  const navigate = useNavigate();
   const [navState, setNavState] = useState("pinned");
+  const [loggedIn, setLoggedIn] = useState(false);
 
   const lastY = useRef(0);
   const delta = useRef(0);
 
+  useEffect(() => {
+    supabase.auth.getSession().then(({ data }) => {
+      setLoggedIn(!!data.session);
+    });
+
+    const { data: listener } = supabase.auth.onAuthStateChange((event, session) => {
+      setLoggedIn(!!session);
+    });
+
+    return () => listener.subscription.unsubscribe();
+  }, []);
+
+  function handleLogout() {
+    supabase.auth.signOut().then(() => {
+      navigate("/login");
+    });
+  }
 
   useEffect(() => {
     const DOWN_THRESHOLD = 60;  
@@ -76,7 +96,11 @@ export default function AppNav() {
       </div>
 
       <div className="db-nav-actions">
-        <Link to="/login" className="db-nav-login">Log In</Link>
+        {loggedIn ? (
+          <button onClick={handleLogout} className="db-nav-login">Log Out</button>
+        ) : (
+          <Link to="/login" className="db-nav-login">Log In</Link>
+        )}
       </div>
     </nav>
   );

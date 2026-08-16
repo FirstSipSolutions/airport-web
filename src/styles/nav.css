@@ -101,9 +101,11 @@
   border-radius: 0.08rem;
   font-size: 13px;
   font-weight: 500;
+  font-family: inherit;
   color: var(--db-text);
   background: transparent;
   text-decoration: none;
+  cursor: pointer;
   transition: background 0.15s;
 }
 
