@@ -35,9 +35,14 @@ export default function AppNav() {
   }, []);
 
   function handleLogout() {
-    supabase.auth.signOut().then(() => {
-      navigate("/login");
-    });
+    supabase.auth
+      .signOut({ scope: "local" })
+      .then(() => {
+        navigate("/login");
+      })
+      .catch(() => {
+        navigate("/login");
+      });
   }
 
   useEffect(() => {
