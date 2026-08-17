@@ -6,7 +6,6 @@ import "../../styles/nav.css";
 const BRAND = "Airport Board";
 
 const NAV_LINKS = [
-  { to: "/board",      label: "Board" },
   { to: "/flights",    label: "Flights" },
   { to: "/airports",   label: "Airports" },
   { to: "/aircraft",   label: "Aircraft" },
