@@ -3,7 +3,6 @@ import { Link } from "react-router-dom";
 import { api } from "../lib/api.js";
 
 const SECTIONS = [
-  { to: "/board", label: "Board" },
   { to: "/flights", label: "Flights" },
   { to: "/airports", label: "Airports" },
   { to: "/cities", label: "Cities" },
