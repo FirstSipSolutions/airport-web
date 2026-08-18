@@ -1,5 +1,6 @@
 import { useEffect, useState } from "react";
 import { api } from "../lib/api.js";
+import { randomColor } from "../lib/randomColor.js";
 
 export default function Cities() {
   const [cities, setCities] = useState([]);
@@ -90,7 +91,11 @@ export default function Cities() {
           value={population}
           onChange={(e) => setPopulation(e.target.value)}
         />
-        <button onClick={editingId ? handleUpdate : handleCreate}>
+        <button
+          onClick={editingId ? handleUpdate : handleCreate}
+          onMouseEnter={(e) => (e.target.style.color = randomColor())}
+          onMouseLeave={(e) => (e.target.style.color = "")}
+        >
           {editingId ? "Save Changes" : "Add City"}
         </button>
       </div>
@@ -111,8 +116,20 @@ export default function Cities() {
               <td>{city.state}</td>
               <td>{city.population}</td>
                <td>
-                <button onClick={() => handleEditClick(city)}>Edit</button>
-                <button onClick={() => handleDelete(city.id)}>Delete</button>
+                <button
+                  onClick={() => handleEditClick(city)}
+                  onMouseEnter={(e) => (e.target.style.color = randomColor())}
+                  onMouseLeave={(e) => (e.target.style.color = "")}
+                >
+                  Edit
+                </button>
+                <button
+                  onClick={() => handleDelete(city.id)}
+                  onMouseEnter={(e) => (e.target.style.color = randomColor())}
+                  onMouseLeave={(e) => (e.target.style.color = "")}
+                >
+                  Delete
+                </button>
               </td>
             </tr>
           ))}
