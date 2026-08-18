@@ -93,3 +93,28 @@ code {
   padding: 4px 8px;
   background: var(--code-bg);
 }
+
+table {
+  border-collapse: collapse;
+  width: 100%;
+  margin-top: 16px;
+}
+
+th,
+td {
+  padding: 10px 16px;
+  text-align: left;
+  border-bottom: 1px solid var(--border);
+}
+
+input {
+  padding: 8px 10px;
+  margin-right: 8px;
+  border: 1px solid var(--border);
+}
+
+button {
+  padding: 8px 14px;
+  margin-right: 8px;
+  cursor: pointer;
+}
